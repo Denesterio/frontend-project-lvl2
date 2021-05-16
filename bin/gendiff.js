@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 
-import { Command } from 'commander/esm.mjs';
-
-const app = new Command();
-app
-  .version('1.0.0')
-  .description('Compares two configuration files and shows a difference.')
-  .arguments('<filepath1>, <filepath2>')
-  .option('-f, --format [type]', 'output format');
+import app from '../src/command.js';
+import gendiff from '../src/gendiff.js';
 
 app.parse();
+
+export default gendiff;
