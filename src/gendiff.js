@@ -19,19 +19,19 @@ export default (fpath1, fpath2) => {
 
   const result = keys.reduce((sum, key) => {
     if (_.has(assigned1Content, key) && !_.has(file2content, key)) {
-      sum += `  - ${key}: ${assigned1Content[key]}\n`;
-      return sum;
+      const res = `${sum}  - ${key}: ${assigned1Content[key]}\n`;
+      return res;
     }
     if (_.has(assigned1Content, key) && !_.has(file1content, key)) {
-      sum += `  + ${key}: ${assigned1Content[key]}\n`;
-      return sum;
+      const res = `${sum}  + ${key}: ${assigned1Content[key]}\n`;
+      return res;
     }
     if (file1content[key] === file2content[key]) {
-      sum += `    ${key}: ${file2content[key]}\n`;
-      return sum;
+      const res = `${sum}    ${key}: ${file2content[key]}\n`;
+      return res;
     }
-    sum += `  - ${key}: ${file1content[key]}\n  + ${key}: ${file2content[key]}\n`;
-    return sum;
+    const res = `${sum}  - ${key}: ${file1content[key]}\n  + ${key}: ${file2content[key]}\n`;
+    return res;
   }, '{\n');
 
   return `${result}}`;
