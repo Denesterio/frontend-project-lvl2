@@ -13,17 +13,16 @@ export default (fpath1, fpath2) => {
 
   const file1content = JSON.parse(file1json);
   const file2content = JSON.parse(file2json);
-  const assigned1Content = { ...file2content, ...file1content };
 
-  const keys = Object.keys(assigned1Content).sort();
+  const keys = _.uniq([...Object.keys(file1content), ...Object.keys(file2content)]).sort();
 
   const result = keys.reduce((sum, key) => {
-    if (_.has(assigned1Content, key) && !_.has(file2content, key)) {
-      const res = `${sum}  - ${key}: ${assigned1Content[key]}\n`;
+    if (!_.has(file2content, key)) {
+      const res = `${sum}  - ${key}: ${file1content[key]}\n`;
       return res;
     }
-    if (_.has(assigned1Content, key) && !_.has(file1content, key)) {
-      const res = `${sum}  + ${key}: ${assigned1Content[key]}\n`;
+    if (!_.has(file1content, key)) {
+      const res = `${sum}  + ${key}: ${file2content[key]}\n`;
       return res;
     }
     if (file1content[key] === file2content[key]) {
