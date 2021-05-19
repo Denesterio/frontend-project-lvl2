@@ -1,0 +1,45 @@
+{
+  "common": {
+    "setting1": "Value 1",
+    "setting2": 200,
+    "setting3": true,
+    "setting6": {
+      "key": "value",
+      "doge": {
+        "wow": ""
+      },
+      "value": {
+        "type": "boolean",
+        "size": 1
+      }
+    }
+  },
+  "users": {
+    "user1": {
+      "name": "Ivan",
+      "surname": "Ivanov",
+      "age": 35
+    },
+    "user2": {
+      "name": "Elena",
+      "surname": "Titova",
+      "age": 29
+    }
+  },
+  "soft": {
+    "Office": "90%",
+    "Games": "10%"
+  },
+  "time": "3 weeks",
+  "work": {
+    "today": {
+      "palaver": {
+        "start": "13:00",
+        "end": "14:00"
+      }
+    },
+    "after tomorrow": {
+      "tour": "after 12:00"
+    }
+  }
+}

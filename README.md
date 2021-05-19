@@ -6,3 +6,4 @@
 [![GitHub Actions Demo](https://github.com/Denesterio/frontend-project-lvl2/actions/workflows/github-actions-demo.yml/badge.svg)](https://github.com/Denesterio/frontend-project-lvl2/actions/workflows/github-actions-demo.yml)
 [![asciicast](https://asciinema.org/a/JdobNAOAOPbPE6NAz9kM6z2G9.svg)](https://asciinema.org/a/JdobNAOAOPbPE6NAz9kM6z2G9)
 [![asciicast](https://asciinema.org/a/EdgYgakF1eIrGEklrNNj12ZmG.svg)](https://asciinema.org/a/EdgYgakF1eIrGEklrNNj12ZmG)
+[![asciicast](https://asciinema.org/a/mJySsseiNvRYNAevhZmj1hILR.svg)](https://asciinema.org/a/mJySsseiNvRYNAevhZmj1hILR)
