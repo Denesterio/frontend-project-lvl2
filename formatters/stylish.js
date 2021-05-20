@@ -53,7 +53,7 @@ const stylish = (tree) => {
         if (_.isPlainObject(value)) {
           return `${indents[index]}${key} ${stringify(value, replacer, depth + 1)}`;
         }
-        return value === '' ? `${indents[index]}${key}${value}` : `${indents[index]}${key} ${value}`;
+        return `${indents[index]}${key} ${value}`;
       });
     }
 

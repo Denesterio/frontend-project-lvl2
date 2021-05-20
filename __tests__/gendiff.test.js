@@ -129,7 +129,6 @@ const resultStyle = `{
       + type: bar
     }
 }`;
-const plainResult = getFixturePath('result_plain.txt');
 
 test('getdiff .json files', () => {
   const fpath1 = getFixturePath('file1.json');
