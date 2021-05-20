@@ -113,17 +113,31 @@ const result2 = `{
     }
 }`;
 
+const resultPlain = `Property 'common.follow' was added with value: false
+Property 'common.setting2' was removed
+Property 'common.setting3' was updated. From true to null
+Property 'common.setting4' was added with value: 'blah blah'
+Property 'common.setting5' was added with value: [complex value]
+Property 'common.setting6.doge.wow' was updated. From '' to 'so much'
+Property 'common.setting6.ops' was added with value: 'vops'
+Property 'group1.baz' was updated. From 'bas' to 'bars'
+Property 'group1.nest' was updated. From [complex value] to 'str'
+Property 'group2' was removed
+Property 'group3' was added with value: [complex value]`;
+
 test('getdiff .json files', () => {
   const fpath1 = getFixturePath('file1.json');
   const fpath2 = getFixturePath('file2.json');
   const fpath3 = getFixturePath('file3.json');
   const fpath4 = getFixturePath('file4.json');
-  expect(gendiff(fpath1, fpath2)).toEqual(result);
-  expect(gendiff(fpath3, fpath4)).toEqual(result2);
+  expect(gendiff(fpath1, fpath2, 'stylish')).toEqual(result);
+  expect(gendiff(fpath3, fpath4, 'stylish')).toEqual(result2);
+  expect(gendiff(fpath1, fpath2, 'plain')).toEqual(resultPlain);
 });
 
 test('gendiff .yaml files', () => {
   const fpath1 = getFixturePath('file1.yaml');
   const fpath2 = getFixturePath('file2.yaml');
-  expect(gendiff(fpath1, fpath2)).toEqual(result);
+  expect(gendiff(fpath1, fpath2, 'stylish')).toEqual(result);
+  expect(gendiff(fpath1, fpath2, 'plain')).toEqual(resultPlain);
 });
