@@ -12,7 +12,7 @@ const makeTree = (key, children, id) => {
       return this.key === '' ? '' : `${this.key}${str}`;
     },
     getId() {
-      return this.id;
+      return this.id.split('');
     },
     isMainTree() {
       return this.key === '';
@@ -26,11 +26,8 @@ const makeNode = (key, values, id) => {
     key,
     values,
     id,
-    isObjectValue() {
-      return typeof this.value === 'object';
-    },
     getId() {
-      return this.id;
+      return this.id.split('');
     },
     getKey(str = '') {
       return `${this.key}${str}`;

@@ -125,6 +125,8 @@ Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
 Property 'group3' was added with value: [complex value]`;
 
+const resultJSON = '{"key":"","children":[{"key":"common","children":[{"key":"follow","values":[false],"id":"2"},{"key":"setting1","values":["Value 1"],"id":"0"},{"key":"setting2","values":[200],"id":"1"},{"key":"setting3","values":[true,null],"id":"12"},{"key":"setting4","values":["blah blah"],"id":"2"},{"key":"setting5","values":[{"key5":"value5"}],"id":"2"},{"key":"setting6","children":[{"key":"doge","children":[{"key":"wow","values":["","so much"],"id":"12"}],"id":"0"},{"key":"key","values":["value"],"id":"0"},{"key":"ops","values":["vops"],"id":"2"}],"id":"0"}],"id":"0"},{"key":"group1","children":[{"key":"baz","values":["bas","bars"],"id":"12"},{"key":"foo","values":["bar"],"id":"0"},{"key":"nest","values":[{"key":"value"},"str"],"id":"12"}],"id":"0"},{"key":"group2","values":[{"abc":12345,"deep":{"id":45}}],"id":"1"},{"key":"group3","values":[{"deep":{"id":{"number":45}},"fee":100500}],"id":"2"}],"id":"0"}';
+
 test('getdiff .json files', () => {
   const fpath1 = getFixturePath('file1.json');
   const fpath2 = getFixturePath('file2.json');
@@ -133,6 +135,7 @@ test('getdiff .json files', () => {
   expect(gendiff(fpath1, fpath2, 'stylish')).toEqual(result);
   expect(gendiff(fpath3, fpath4, 'stylish')).toEqual(result2);
   expect(gendiff(fpath1, fpath2, 'plain')).toEqual(resultPlain);
+  expect(gendiff(fpath1, fpath2, 'json')).toEqual(resultJSON);
 });
 
 test('gendiff .yaml files', () => {
@@ -140,4 +143,5 @@ test('gendiff .yaml files', () => {
   const fpath2 = getFixturePath('file2.yaml');
   expect(gendiff(fpath1, fpath2, 'stylish')).toEqual(result);
   expect(gendiff(fpath1, fpath2, 'plain')).toEqual(resultPlain);
+  expect(gendiff(fpath1, fpath2, 'json')).toEqual(resultJSON);
 });
