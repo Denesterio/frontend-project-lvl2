@@ -1,5 +1,11 @@
 import _ from 'lodash';
-import { isTree } from '../src/makers.js';
+import {
+  getChildren,
+  getIdAsArray,
+  getValues,
+  getKey,
+  isMain,
+} from '../src/makers.js';
 
 const idToMark = {
   1: '- ',
@@ -30,30 +36,30 @@ const stringify = (value, replacer = ' ', spaceCount = 1) => {
 
 const stylish = (tree) => {
   const iter = (current, depth) => {
-    const key = current.getKey(': ');
-    const children = current.getChildren?.();
-    const values = current.getValues?.();
-    const ids = current.getId();
+    const key = getKey(current, ':');
+    const children = getChildren(current);
+    const values = getValues(current);
+    const ids = getIdAsArray(current);
 
     const replacer = '  ';
     const marks = ids.map((id) => idToMark[id]);
     const indentHalf = replacer.repeat(depth);
     const indentBeforeMark = indentHalf.slice(0, indentHalf.length - 2);
     const bracketsIndent = indentHalf.repeat(2);
-    const indents = marks.map((mark) => (isTree(current) && current.isMainTree() ? '' : `${indentHalf}${indentBeforeMark}${mark}`));
+    const indents = marks.map((mark) => (isMain(current) ? '' : `${indentHalf}${indentBeforeMark}${mark}`));
 
     if (!children) {
       return values.map((value, index) => {
         if (_.isPlainObject(value)) {
-          return `${indents[index]}${key}${stringify(value, replacer, depth + 1)}`;
+          return `${indents[index]}${key} ${stringify(value, replacer, depth + 1)}`;
         }
-        return `${indents[index]}${key}${value}`;
+        return value === '' ? `${indents[index]}${key}${value}` : `${indents[index]}${key} ${value}`;
       });
     }
 
     const lines = children.flatMap((child) => iter(child, depth + 1));
-
-    return [`${bracketsIndent}${key}{`, ...lines, `${bracketsIndent}}`].join('\n');
+    const spaces = isMain(current) ? '' : ' ';
+    return [`${bracketsIndent}${key}${spaces}{`, ...lines, `${bracketsIndent}}`].join('\n');
   };
   return iter(tree, 0);
 };

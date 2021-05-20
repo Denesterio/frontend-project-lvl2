@@ -1,4 +1,10 @@
-import { isTree } from '../src/makers.js';
+import {
+  isTree,
+  getChildren,
+  getIdAsArray,
+  getValues,
+  getKey,
+} from '../src/makers.js';
 
 const isConsist = (something) => something !== undefined;
 
@@ -27,15 +33,16 @@ const getStringFromId = (id, prop, values) => {
 
 const plain = (tree) => {
   const iter = (current, pathTo) => {
-    const key = current.getKey();
-    const ids = current.getId();
-    const data = isTree(current) ? current.getChildren() : current.getValues();
+    const key = getKey(current);
+    const ids = getIdAsArray(current);
+    const children = getChildren(current);
+    const values = getValues(current);
     if (!isTree(current)) {
       const finalPath = `${pathTo}.${key}`.slice(2);
       const idString = ids.join('');
-      return getStringFromId(idString, finalPath, data);
+      return getStringFromId(idString, finalPath, values);
     }
-    const paths = data.map((child) => iter(child, `${pathTo}.${key}`));
+    const paths = children.map((child) => iter(child, `${pathTo}.${key}`));
     return paths.flat().filter(isConsist).join('\n');
   };
 

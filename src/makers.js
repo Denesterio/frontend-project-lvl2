@@ -1,22 +1,15 @@
 const isTree = (node) => 'children' in node;
+const getChildren = (tree) => tree.children;
+const getKey = (node, str = '') => (node.key === '' ? '' : `${node.key}${str}`);
+const getIdAsArray = (node) => node.id.split('');
+const getValues = (node) => node.values;
+const isMain = (tree) => (tree.id === 'main');
 
 const makeTree = (key, children, id) => {
   const tree = {
     key,
     children,
     id,
-    getChildren() {
-      return this.children;
-    },
-    getKey(str = '') {
-      return this.key === '' ? '' : `${this.key}${str}`;
-    },
-    getId() {
-      return this.id.split('');
-    },
-    isMainTree() {
-      return this.key === '';
-    },
   };
   return tree;
 };
@@ -26,17 +19,17 @@ const makeNode = (key, values, id) => {
     key,
     values,
     id,
-    getId() {
-      return this.id.split('');
-    },
-    getKey(str = '') {
-      return `${this.key}${str}`;
-    },
-    getValues() {
-      return this.values;
-    },
   };
   return node;
 };
 
-export { makeTree, makeNode, isTree };
+export {
+  makeTree,
+  makeNode,
+  isTree,
+  getChildren,
+  getIdAsArray,
+  getValues,
+  getKey,
+  isMain,
+};

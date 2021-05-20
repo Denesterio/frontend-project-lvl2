@@ -10,14 +10,15 @@ export default (fpath1, fpath2, formatter = stylish) => {
   const filepath1 = path.resolve(root, fpath1);
   const filepath2 = path.resolve(root, fpath2);
 
-  const file1content = parse(fs.readFileSync(filepath1, 'utf-8'), path.extname(filepath1));
-  const file2content = parse(fs.readFileSync(filepath2, 'utf-8'), path.extname(filepath2));
+  const file1content = parse(fs.readFileSync(filepath1, 'utf8'), path.extname(filepath1));
+  const file2content = parse(fs.readFileSync(filepath2, 'utf8'), path.extname(filepath2));
 
   const diffObject = getDiff(file1content, file2content);
-  const formatters = {
-    plain: (o) => plain(o),
-    json: (o) => json(o),
-    stylish: (o) => stylish(o),
-  };
-  return formatters[formatter](diffObject);
+  if (formatter === 'plain') {
+    return plain(diffObject);
+  }
+  if (formatter === 'json') {
+    return json(diffObject);
+  }
+  return stylish(diffObject);
 };
