@@ -1,6 +1,7 @@
-import { Command } from 'commander';
+import { pkg } from 'commander';
 import gendiff from './gendiff.js';
 
+const { Command } = pkg;
 const app = new Command();
 app
   .version('1.0.0')
