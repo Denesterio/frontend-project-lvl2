@@ -1,4 +1,4 @@
-import { pkg } from 'commander';
+import pkg from 'commander';
 import gendiff from './gendiff.js';
 
 const { Command } = pkg;
